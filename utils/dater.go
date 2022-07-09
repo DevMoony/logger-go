@@ -8,6 +8,41 @@ import (
 // ========== [[ CONV ]] ===========
 // =================================
 
+func amOrPMFormatter(hour int, minute int, second int) string {
+	var status string
+	var mins string
+	var secs string
+
+	if hour >= 12 {
+		status = "PM"
+	} else if hour == 0 || hour < 12 {
+		status = "AM"
+	}
+
+	if minute < 10 {
+		mins = stringAppender("0", []string{
+			IntToString(minute),
+		})
+	} else if minute > 9 {
+		mins = IntToString(minute)
+	}
+
+	if second < 10 {
+		secs = stringAppender("0", []string{
+			IntToString(second),
+		})
+	} else if second > 9 {
+		secs = IntToString(second)
+	}
+
+	return FormatString("{0}:{1}:{2} {3}", []string{
+		IntToString(hour),
+		mins,
+		secs,
+		status,
+	})
+}
+
 func dayFormatter(day int) string {
 	var result string
 
@@ -78,15 +113,17 @@ func Date() string {
 		now        = time.Now()
 	)
 	var (
-		day   = dayFormatter(now.Day())
-		month = monthFormatter(now.Month())
-		year  = IntToString(now.Year())
+		amOrPm = amOrPMFormatter(now.Hour(), now.Minute(), now.Second())
+		day    = dayFormatter(now.Day())
+		month  = monthFormatter(now.Month())
+		year   = IntToString(now.Year())
 	)
 
-	str = FormatString("{0} of {1} {2}", []string{
+	str = FormatString("{0} of {1} {2} | {3}", []string{
 		day,
 		month,
 		year,
+		amOrPm,
 	})
 
 	return str
