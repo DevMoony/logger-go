@@ -83,10 +83,11 @@ func Date() string {
 		year  = IntToString(now.Year())
 	)
 
-	stringAppender(str, []string{
+	str = stringAppender(str, []string{
 		day,
 		" of ",
 		month,
+		" ",
 		year,
 	})
 
