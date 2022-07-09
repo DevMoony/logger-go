@@ -53,11 +53,11 @@ func Error(message string) {
 func Fatal(message string, exitCode int) {
 	var state string = colorifyState("fatal")
 
-	FormatString("{0} {1} {2}", []string{
+	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
 		colors.BrightWhite(message),
-	})
+	}))
 
 	os.Exit(exitCode)
 }
@@ -66,11 +66,11 @@ func Log(state string) func(string) {
 	var stater string = colorifyState(state)
 
 	Log := func(message string) {
-		FormatString("{0} {1} {2}", []string{
+		print(FormatString("{0} {1} {2}", []string{
 			log_time,
 			stater,
 			colors.BrightWhite(message),
-		})
+		}))
 	}
 
 	return Log
