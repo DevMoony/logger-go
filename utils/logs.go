@@ -71,6 +71,10 @@ func Log(state string) func(string) {
 			stater,
 			colors.BrightWhite(message),
 		}))
+
+		if state == "Fatal" {
+			os.Exit(1)
+		}
 	}
 
 	return Log
