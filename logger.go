@@ -21,7 +21,7 @@ type ILogger struct {
 	Debug   func(string)
 	Warning func(string)
 	Error   func(string)
-	Fatal   func(string, int)
+	Fatal   func(string)
 	Log     func(string)
 }
 
@@ -55,5 +55,5 @@ func Error(message string) {
 }
 
 func Fatal(message string, exitCode int) {
-	utils.Fatal(message, exitCode)
+	utils.Fatal(message)
 }

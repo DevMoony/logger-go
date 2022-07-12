@@ -50,7 +50,7 @@ func Error(message string) {
 	}))
 }
 
-func Fatal(message string, exitCode int) {
+func Fatal(message string) {
 	var state string = colorifyState("fatal")
 
 	print(FormatString("{0} {1} {2}", []string{
@@ -59,7 +59,7 @@ func Fatal(message string, exitCode int) {
 		colors.BrightWhite(message),
 	}))
 
-	os.Exit(exitCode)
+	os.Exit(1)
 }
 
 func Log(state string) func(string) {
