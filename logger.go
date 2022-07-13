@@ -54,6 +54,6 @@ func Error(message string) {
 	utils.Error(message)
 }
 
-func Fatal(message string, exitCode int) {
+func Fatal(message string) {
 	utils.Fatal(message)
 }
