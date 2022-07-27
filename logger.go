@@ -19,11 +19,17 @@ type LoggerConfig struct {
 }
 
 type ILogger struct {
+	// Logs a info message to the terminal.
 	Info    func(string)
+	// Logs a debug message to the terminal.
 	Debug   func(string)
+	// Logs a warning message to the terminal.
 	Warning func(string)
+	// Logs a error message to the terminal.
 	Error   func(string)
+	// Logs a fatal message to the terminal and exits the program.
 	Fatal   func(string)
+	// Logs a message to the terminal with the given configuration.
 	Log     func(string)
 }
 
@@ -79,7 +85,7 @@ func Error(message string) {
 }
 
 // Logs a fatal message to the terminal and exits the program.
-func Fatal(message string, exitCode int) {
+func Fatal(message string) {
 	utils.Fatal(message)
 }
 
