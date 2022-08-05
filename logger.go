@@ -19,32 +19,20 @@ type LoggerConfig struct {
 }
 
 type ILogger struct {
-	// Logs a info message to the terminal.
-	Info    func(string)
-	// Logs a debug message to the terminal.
-	Debug   func(string)
-	// Logs a warning message to the terminal.
-	Warning func(string)
-	// Logs a error message to the terminal.
-	Error   func(string)
-	// Logs a fatal message to the terminal and exits the program.
-	Fatal   func(string)
+	// Formats provided text and logs it to the terminal.
+	Format func(string, []string)
 	// Logs a message to the terminal with the given configuration.
-	Log     func(string)
+	Log func(string)
 }
 
 func ConfigureLogger(config LoggerConfig) *ILogger {
 	logs := &ILogger{
-		// Logs a info message to the terminal.
-		Info: utils.Info,
-		// Logs a debug message to the terminal.
-		Debug: utils.Debug,
-		// Logs a warning message to the terminal.
-		Warning: utils.Warning,
-		// Logs a error message to the terminal.
-		Error: utils.Error,
-		// Logs a fatal message to the terminal and exits the program.
-		Fatal: utils.Fatal,
+		// Formats provided text and logs it to the terminal.
+		Format: func(message string, values []string) {
+			msg := utils.FormatString(message, values)
+
+			utils.Log(config.Severity)(msg)
+		},
 		// Logs a message to the terminal with the given configuration.
 		Log: utils.Log(config.Severity),
 	}
@@ -117,4 +105,11 @@ func Sscan(str string, a ...any) (n int, err error) {
 // Sscanln is similar to Sscan, but stops scanning at a newline and after the final item there must be a newline or EOF.
 func Sscanln(str string, a ...any) (n int, err error) {
 	return fmt.Sscanln(str, a)
+}
+
+// Formats provided text while logging it.
+func LogFormatted(Severity string, message string, values []string) {
+	msg := utils.FormatString(message, values)
+
+	utils.Log(Severity)(msg)
 }
