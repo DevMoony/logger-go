@@ -10,53 +10,53 @@ import (
 var log_time string = colorifyTime(colors.Yellow(Date()))
 var print = func(msg string) { fmt.Println(msg) }
 
-func Info(message string) {
+func Info(message ...any) {
 	var state string = colorifyState("info")
 
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(message),
+		colors.BrightWhite(fmt.Sprintln(message)),
 	}))
 }
 
-func Debug(message string) {
+func Debug(message ...any) {
 	var state string = colorifyState("debug")
 
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(message),
+		colors.BrightWhite(fmt.Sprintln(message)),
 	}))
 }
 
-func Warning(message string) {
+func Warning(message ...any) {
 	var state string = colorifyState("warning")
 
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(message),
+		colors.BrightWhite(fmt.Sprintln(message)),
 	}))
 }
 
-func Error(message string) {
+func Error(message ...any) {
 	var state string = colorifyState("error")
 
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(message),
+		colors.BrightWhite(fmt.Sprintln(message)),
 	}))
 }
 
-func Fatal(message string) {
+func Fatal(message ...any) {
 	var state string = colorifyState("fatal")
 
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(message),
+		colors.BrightWhite(fmt.Sprintln(message)),
 	}))
 
 	os.Exit(1)
@@ -65,11 +65,11 @@ func Fatal(message string) {
 func Log(state string) func(string) {
 	var stater string = colorifyState(state)
 
-	Log := func(message string) {
+	Log := func(message ...any) {
 		print(FormatString("{0} {1} {2}", []string{
 			log_time,
 			stater,
-			colors.BrightWhite(message),
+			colors.BrightWhite(fmt.Sprintln(message)),
 		}))
 
 		if state == "Fatal" {
