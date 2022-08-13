@@ -62,14 +62,14 @@ func Fatal(message ...any) {
 	os.Exit(1)
 }
 
-func Log(state string) func(string) {
+func Log(state string) func(...any) {
 	var stater string = colorifyState(state)
 
-	Log := func(message string) {
+	Log := func(message ...any) {
 		print(FormatString("{0} {1} {2}", []string{
 			log_time,
 			stater,
-			colors.BrightWhite(message),
+			colors.BrightWhite(fmt.Sprint(message)),
 		}))
 
 		if state == "Fatal" {
