@@ -8,7 +8,7 @@ import (
 )
 
 var log_time string = colorifyTime(colors.Yellow(Date()))
-var print = func(msg string) { fmt.Println(msg) }
+var print = func(msg ...any) { fmt.Println(msg) }
 
 func Info(message ...any) {
 	var state string = colorifyState("info")
