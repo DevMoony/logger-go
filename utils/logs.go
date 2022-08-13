@@ -65,11 +65,11 @@ func Fatal(message ...any) {
 func Log(state string) func(string) {
 	var stater string = colorifyState(state)
 
-	Log := func(message ...any) {
+	Log := func(message string) {
 		print(FormatString("{0} {1} {2}", []string{
 			log_time,
 			stater,
-			colors.BrightWhite(fmt.Sprintln(message)),
+			colors.BrightWhite(message),
 		}))
 
 		if state == "Fatal" {
