@@ -22,7 +22,7 @@ type ILogger struct {
 	// Formats provided text and logs it to the terminal.
 	Format func(string, []string)
 	// Logs a message to the terminal with the given configuration.
-	Log func(string)
+	Log func(...any)
 }
 
 func ConfigureLogger(config LoggerConfig) *ILogger {
@@ -53,27 +53,27 @@ func LogNextLine(amount int) {
 }
 
 // Logs a info message to the terminal.
-func Info(message string) {
+func Info(message ...any) {
 	utils.Info(message)
 }
 
 // Logs a debug message to the terminal.
-func Debug(message string) {
+func Debug(message ...any) {
 	utils.Debug(message)
 }
 
 // Logs a warning message to the terminal.
-func Warning(message string) {
+func Warning(message ...any) {
 	utils.Warning(message)
 }
 
 // Logs a error message to the terminal.
-func Error(message string) {
+func Error(message ...any) {
 	utils.Error(message)
 }
 
 // Logs a fatal message to the terminal and exits the program.
-func Fatal(message string) {
+func Fatal(message ...any) {
 	utils.Fatal(message)
 }
 
