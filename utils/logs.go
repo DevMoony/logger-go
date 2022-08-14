@@ -16,7 +16,7 @@ func Info(message ...any) {
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(fmt.Sprintln(message)),
+		colors.BrightWhite(LogSorter(message)),
 	}))
 }
 
@@ -26,7 +26,7 @@ func Debug(message ...any) {
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(fmt.Sprintln(message)),
+		colors.BrightWhite(LogSorter(message)),
 	}))
 }
 
@@ -36,7 +36,7 @@ func Warning(message ...any) {
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(fmt.Sprintln(message)),
+		colors.BrightWhite(LogSorter(message)),
 	}))
 }
 
@@ -46,7 +46,7 @@ func Error(message ...any) {
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(fmt.Sprintln(message)),
+		colors.BrightWhite(LogSorter(message)),
 	}))
 }
 
@@ -56,7 +56,7 @@ func Fatal(message ...any) {
 	print(FormatString("{0} {1} {2}", []string{
 		log_time,
 		state,
-		colors.BrightWhite(fmt.Sprintln(message)),
+		colors.BrightWhite(LogSorter(message)),
 	}))
 
 	os.Exit(1)
@@ -69,7 +69,7 @@ func Log(state string) func(...any) {
 		print(FormatString("{0} {1} {2}", []string{
 			log_time,
 			stater,
-			colors.BrightWhite(fmt.Sprint(message)),
+			colors.BrightWhite(LogSorter(message)),
 		}))
 
 		if state == "Fatal" {
@@ -92,4 +92,13 @@ func panic(reason string) {
 	}))
 
 	os.Exit(1)
+}
+
+func LogSorter(v ...any) string {
+	var str string
+	for _, val := range v {
+		str = str + " " + val 
+	}
+	
+	return str
 }
