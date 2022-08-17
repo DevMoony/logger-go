@@ -97,7 +97,7 @@ func panic(reason string) {
 func LogSorter(v ...any) string {
 	var str string
 	for _, val := range v {
-		str = str + " " + val 
+		str = str + " " + fmt.Sprint(val) 
 	}
 	
 	return str
