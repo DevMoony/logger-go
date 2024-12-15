@@ -8,10 +8,14 @@ import (
 // ========== [[ CONV ]] ===========
 // =================================
 
-func amOrPMFormatter(hour int, minute int, second int) string {
-	var status string
-	var mins string
-	var secs string
+// amOrPMFormatter formats and returns the time in a 12-hour clock format with AM/PM suffix.
+// It takes hour, minute, and second as input parameters and returns the formatted time string.
+func AmOrPMFormatter(hour int, minute int, second int) string {
+	var (
+		status string
+		mins   string
+		secs   string
+	)
 
 	if hour >= 12 {
 		status = "PM"
@@ -43,7 +47,21 @@ func amOrPMFormatter(hour int, minute int, second int) string {
 	})
 }
 
-func dayFormatter(day int) string {
+func TimeFormatter(hour int, minute int, include_seconds bool) string {
+	var (
+		mins string
+		secs string
+	)
+
+	if include_seconds {
+	}
+}
+
+// dayFormatter takes a day of the month as an integer and returns a string in the format [number] [suffix].
+// The suffix is determined by the day of the month, following the standard English rules for ordinal numbers.
+// For example, the 1st, 2nd, 3rd, 21st, 22nd, and 23rd will have the suffixes "st", "nd", "rd", "st", "nd", and "rd", respectively.
+// All other days of the month will have the suffix "th".
+func DayFormatter(day int) string {
 	var result string
 
 	if day == 1 || day == 21 || day == 31 {
@@ -59,7 +77,8 @@ func dayFormatter(day int) string {
 	return result
 }
 
-func monthFormatter(month time.Month) string {
+// monthFormatter takes a time.Month and returns a string of the full name of the month, such as "January" or "February".
+func MonthFormatter(month time.Month) string {
 	var result string
 
 	switch month {
@@ -113,9 +132,9 @@ func Date() string {
 		now        = time.Now()
 	)
 	var (
-		amOrPm = amOrPMFormatter(now.Hour(), now.Minute(), now.Second())
-		day    = dayFormatter(now.Day())
-		month  = monthFormatter(now.Month())
+		amOrPm = AmOrPMFormatter(now.Hour(), now.Minute(), now.Second())
+		day    = DayFormatter(now.Day())
+		month  = MonthFormatter(now.Month())
 		year   = IntToString(now.Year())
 	)
 

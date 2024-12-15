@@ -44,3 +44,15 @@ func stringAppender(original string, addition []string) string {
 
 	return str
 }
+
+func ArrayReplace(text string, old []string, new []string) string {
+	var result string
+	
+	for i := 0; i < len(text); i++ {
+		for j := 0; j < len(new); j++ {
+			result = strings.Replace(text, old[i], new[j], -1)
+		}
+	}
+
+	return result
+}
