@@ -47,15 +47,15 @@ func AmOrPMFormatter(hour int, minute int, second int) string {
 	})
 }
 
-func TimeFormatter(hour int, minute int, include_seconds bool) string {
-	var (
-		mins string
-		secs string
-	)
+// func TimeFormatter(hour int, minute int, include_seconds bool) string {
+// 	var (
+// 		mins string
+// 		secs string
+// 	)
 
-	if include_seconds {
-	}
-}
+// 	if include_seconds {
+// 	}
+// }
 
 // dayFormatter takes a day of the month as an integer and returns a string in the format [number] [suffix].
 // The suffix is determined by the day of the month, following the standard English rules for ordinal numbers.
